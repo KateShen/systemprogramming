@@ -1,0 +1,230 @@
+.syntax unified
+.global main
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ the audio framework has two functions:
+@
+@ 1. init_audio (call this once at the start of your program)
+@
+@ 2. play_audio_sample (sends the low 16 bits of r0 out the
+@    headphone jack - call this repeatedly in your main loop)
+@
+@ the rest is up to you!
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+main:
+	@ your code goes he2
+	bl init_audio
+	b mid_1_4_4_loop
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ 1
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_1_4_4_loop:
+	mov r9, #0
+
+mid_1_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #130
+	bgt mid_2_4_4_loop
+
+mid_1_loop1:
+	cmp r8, #183
+	bgt mid_1_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_1_loop1
+
+mid_1_init_loop2:
+	mov r8, #0
+mid_1_loop2:
+	cmp r8, #184
+	bgt mid_1_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_1_loop2
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ 2
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_2_4_4_loop:
+	mov r9, #0
+mid_2_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #146
+	bgt mid_3_4_4_loop
+
+mid_2_loop1:
+	cmp r8, #163
+	bgt mid_2_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_2_loop1
+
+mid_2_init_loop2:
+	mov r8, #0
+mid_2_loop2:
+	cmp r8, #164
+	bgt mid_2_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_2_loop2
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ 3
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+mid_3_4_4_loop:
+	mov r9, #0
+
+mid_3_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #164
+	bgt mid_4_4_4_loop
+
+mid_3_loop1:
+	cmp r8, #145
+	bgt mid_3_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_3_loop1
+
+mid_3_init_loop2:
+	mov r8, #0
+
+mid_3_loop2:
+	cmp r8, #146
+	bgt mid_3_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_3_loop2
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ 4
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_4_4_4_loop:
+	mov r9, #0
+mid_4_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #174
+	bgt mid_5_4_4_loop
+
+mid_4_loop1:
+	cmp r8, #137
+	bgt mid_4_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_4_loop1
+
+mid_4_init_loop2:
+	mov r8, #0
+mid_4_loop2:
+	cmp r8, #138
+	bgt mid_4_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_4_loop2
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ 5
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_5_4_4_loop:
+	mov r9, #0
+mid_5_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #196
+	bgt mid_6_4_4_loop
+
+mid_5_loop1:
+	cmp r8, #122
+	bgt mid_5_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_5_loop1
+
+mid_5_init_loop2:
+	mov r8, #0
+mid_5_loop2:
+	cmp r8, #123
+	bgt mid_5_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_5_loop2
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ La
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_6_4_4_loop:
+	mov r9, #0
+mid_6_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #220
+	bgt mid_7_4_4_loop
+
+mid_6_loop1:
+	cmp r8, #109
+	bgt mid_6_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_6_loop1
+
+mid_6_init_loop2:
+	mov r8, #0
+mid_6_loop2:
+	cmp r8, #110
+	bgt mid_6_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_6_loop2
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Si
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+mid_7_4_4_loop:
+	mov r9, #0
+mid_7_init_loop1:
+	mov r8, #0
+	adds r9, #1
+	cmp r9, #246
+	bgt mid_1_4_4_loop
+
+mid_7_loop1:
+	cmp r8, #97
+	bgt mid_7_init_loop2
+	adds r8, #1
+	movs r0, #0x8000
+	bl play_audio_sample
+	b mid_7_loop1
+
+mid_7_init_loop2:
+	mov r8, #0
+mid_7_loop2:
+	cmp r8, #98
+	bgt mid_7_init_loop1
+	adds r8, #1
+	ldr r0, [pc]
+	.word 0x7FFF
+	bl play_audio_sample
+	b mid_7_init_loop1

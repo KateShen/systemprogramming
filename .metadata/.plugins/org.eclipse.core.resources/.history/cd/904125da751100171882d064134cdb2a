@@ -1,0 +1,111 @@
+.Syntax unified
+.global main
+
+
+.macro enable_GPIOB_clock
+	ldr r1, =0x48000400 @GPIO
+	ldr r2, [r1, #0x0]
+	orr r2, #16
+	bic r2,  #32
+	str r2, [r1, #0x0]
+
+
+	ldr r1, =0x48000400 @GPIO
+	ldr r2, [r1, #0x14]
+	orr r2, #4
+	str r2, [r1, #0x14]
+.endm
+
+.macro enable_GPIOE_clock
+
+	ldr r1, =0x48001000 @GPIO
+	ldr r2, [r1, #0x0]
+	orr r2, #65536
+	bic r2,  #131072
+	str r2, [r1, #0x0]
+
+
+	ldr r1, =0x48001000 @GPIO
+	ldr r2, [r1, #0x14]
+	orr r2, #256
+	str r2, [r1, #0x14]
+.endm
+
+.macro enable_GPIOx_clock arg1
+	ldr r1, \arg1
+	ldr r2, [r1, #0x0]
+	orr r2, #65536
+	bic r2, 131072
+	str r2, [r1, #0x0]
+
+
+	ldr r1, 0x48001000 @GPIO
+	ldr r2, [r1, #0x14]
+	orr r2, #256
+	str r2, [r1, #0x14]
+
+.endm
+
+
+
+
+.macro set_bit address_register offset bit_index
+
+    @ load current peripheral register value into r3
+    ldr r3, \address_register
+
+    @ set the bit you care about, leave the others as they are
+    <your code goes here>
+
+    @ write the data back to the peripheral register
+    str r3, <your code goes here>
+.endm
+
+.macro clear_bit address_register offset bit_index
+
+	@ load current peripheral register value into r3
+    ldr r3, <your code goes here>
+
+    @ set the bit you care about, leave the others as they are
+    <your code goes here>
+
+    @ write the data back to the peripheral register
+    str r3, <your code goes here>
+
+.endm
+
+.macro my_macro arg_one
+	mov r4, \arg_one
+	adds r4, \arg_one
+
+.endm
+main:
+
+@ load r1 with the base address of RCC
+	ldr r1, =0x40021000
+@ load r2 with the value of RCC_AHB2ENR
+@ (note the #0x4C offset from the RCC base address)
+	ldr r2, [r1, #0x4C]
+@ set bit 1 of this register by doing a logical or with #2
+@ think: why does this work?
+	orr r2, #2
+	orr r2, #16
+@ store the modified result back in RCC_AHB2ENR
+	str r2, [r1, #0x4C]
+	enable_GPIOB_clock
+	enable_GPIOE_clock
+	my_macro #5
+	enable_GPIOx_clock #0x48001000
+	nop
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+.syntax unified
+.global main
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ the audio framework has two functions:
+@
+@ 1. init_audio (call this once at the start of your program)
+@
+@ 2. play_audio_sample (sends the low 16 bits of r0 out the
+@    headphone jack - call this repeatedly in your main loop)
+@
+@ the rest is up to you!
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+b init_audio
+main:
+	@ your code goes here
+	b init_audio
+	bl loop1
+
+
+
+loop1:
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	movs r0, #0x8000
+	bl play_audio_sample
+	ldr r0, [pc]
+
+loop2:
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	.word 0x7FFF
+	bl play_audio_sample
+	b loop1
+
+
+

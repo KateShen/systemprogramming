@@ -1,0 +1,23 @@
+19:34:13 **** Incremental Build of configuration Debug for project comp2300-lab-3 ****
+make all 
+Building file: ../src/main.s
+Invoking: MCU GCC Assembler
+/Users/yushen/Documents/workspace/comp2300-lab-3/Debug
+arm-none-eabi-as -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -I"/Users/yushen/Documents/workspace/comp2300-lab-3/inc" -g -o "src/main.o" "../src/main.s"
+Finished building: ../src/main.s
+ 
+Building target: comp2300-lab-3.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T"/Users/yushen/Documents/workspace/comp2300-lab-3/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "comp2300-lab-3.elf" @"objects.list"  
+Finished building target: comp2300-lab-3.elf
+ 
+/Applications/Xcode.app/Contents/Developer/usr/bin/make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "comp2300-lab-3.elf" "comp2300-lab-3.bin"
+arm-none-eabi-size "comp2300-lab-3.elf"
+   text	   data	    bss	    dec	    hex	filename
+   1016	   1080	   1056	   3152	    c50	comp2300-lab-3.elf
+ 
+
+19:34:14 Build Finished (took 339ms)
+
